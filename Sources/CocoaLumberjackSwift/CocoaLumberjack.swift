@@ -42,6 +42,8 @@ extension DDLogFlag {
                 return .warning
             } else if contains(.error) {
                 return .error
+            } else if contains(.api) {
+                return .api
             } else {
                 return .off
             }
@@ -435,6 +437,28 @@ public func DDLogError(_ message: @autoclosure () -> DDLogMessageFormat,
     _DDLogMessage(message(),
                   level: level,
                   flag: .error,
+                  context: context,
+                  file: file,
+                  function: function,
+                  line: line,
+                  tag: tag,
+                  asynchronous: asynchronous,
+                  ddlog: ddlog)
+}
+
+@inlinable
+public func DDLogAPI(_ message: @autoclosure () -> DDLogMessageFormat,
+                      level: DDLogLevel = DDDefaultLogLevel,
+                      context: Int = 0,
+                      file: StaticString = #file,
+                      function: StaticString = #function,
+                      line: UInt = #line,
+                      tag: Any? = nil,
+                      asynchronous: Bool = asyncLoggingEnabled,
+                      ddlog: DDLog = .sharedInstance) {
+    _DDLogMessage(message(),
+                  level: level,
+                  flag: .api,
                   context: context,
                   file: file,
                   function: function,

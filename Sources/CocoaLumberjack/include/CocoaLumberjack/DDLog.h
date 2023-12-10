@@ -136,7 +136,10 @@ typedef NS_OPTIONS(NSUInteger, DDLogFlag){
     /**
      *  0...10000 DDLogFlagVerbose
      */
-    DDLogFlagVerbose    = (1 << 4)
+    DDLogFlagVerbose    = (1 << 4),
+    
+    
+    DDLogFlagAPI        = (1 << 5)
 };
 
 /**
@@ -176,7 +179,11 @@ typedef NS_ENUM(NSUInteger, DDLogLevel){
     /**
      *  All logs (1...11111)
      */
-    DDLogLevelAll       = NSUIntegerMax
+    DDLogLevelAll       = NSUIntegerMax,
+    
+    
+    
+    DDLogLevelAPI       = (DDLogFlagAPI)
 };
 
 /**
